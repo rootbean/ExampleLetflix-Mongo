@@ -11,12 +11,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.get('/', function(req, res) {
+   res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+});
+
+app.use('/client', express.static(__dirname + '/client/dist'));
+app.use(express.static(path.resolve(__dirname, 'client')));
 
 app.use('/api', api)
-
-app.get('/', (req, res) => {
-res.sendFile(path.join(__dirname + '/client/dist'));
-})
 
 module.exports = app
