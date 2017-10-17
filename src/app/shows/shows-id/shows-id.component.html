@@ -1,0 +1,72 @@
+<div style="font-size: 18px;">
+  <div class="container">
+    <h1>{{show.name}}</h1>
+    <div>
+      <div style="display: inline-block;">
+        <img class="alineadoTextoImagenAbajo" 
+        title="{{show.name}}" alt="{{show.name}}" 
+        [src]="show.image?.medium" 
+        width="250" height="350">
+        <div [innerHTML]="show.summary"></div>
+      </div>
+      <div>
+        <p>Name: {{show.name}}
+        <br> Language: {{show.language}}
+        <br> Genres: {{show.genres}}
+        <br> Rating: {{show.rating?.average}}
+        <br> Schedule: {{show.schedule?.days}} - {{show.schedule?.time}}
+      </p>
+      </div>
+      <div *ngIf="isAuthenticated()">
+          <button (click)="updateShowFavorite(true)" *ngIf="!this.showFavorite" class="btn btn-primary">
+            <i class="fa fa-star" aria-hidden="true"> Add Favorite
+            </i>
+          </button>
+          <button (click)="updateShowFavorite(false)" 
+          *ngIf="this.showFavorite"  class="btn btn-danger">
+            <i class="fa fa-star" aria-hidden="true"> Remove Favorite
+            </i>
+          </button>
+      </div>
+
+      <div style="margin-top: 20px;">
+       <button (click)="onLike(false)" [disabled]="!isAuthenticated()" *ngIf="like.like" class="btn btn-primary">
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        </button>
+        <button (click)="onLike(true)" [disabled]="!isAuthenticated()" *ngIf="!like.like">
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        </button>
+        Like: {{cantLikes.like}}
+       <button [disabled]="!isAuthenticated()"
+          (click)="onUnLike(false)"  *ngIf="like.unlike" class="btn btn-primary">
+          <i class="fa fa-thumbs-down" aria-hidden="true"></i>   
+        </button>
+        <button (click)="onUnLike(true)" [disabled]="!isAuthenticated()" *ngIf="!like.unlike">
+          <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+        </button>
+        Unlike: {{cantLikes.unlike}}
+      </div>
+
+      <div style="margin-top: 20px; margin-bottom: 100px;">
+         <h4>Comentarios</h4>
+         <textarea [(ngModel)]="comment.description" name="comment">
+         </textarea>
+         <button [disabled]="!isAuthenticated()" (click)="addComment()" class="btn btn-primary">Add Comment</button> 
+         <p *ngIf="!isAuthenticated()">Debe estar logueado para comentar</p>
+      </div>
+
+
+      <div *ngFor="let item of commentsList" 
+      style="margin-top: 20px; margin-bottom: 100px;">
+         <textarea name="comment">
+           {{item.description}}
+         </textarea> 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div>
+  
+</div>

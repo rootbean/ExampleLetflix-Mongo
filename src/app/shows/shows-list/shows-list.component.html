@@ -1,0 +1,34 @@
+<div class="row">
+   <div class="col-xs-11 col-sm-6 col-md-6 col-lg-5">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="searchByName" placeholder="Search for show name...">
+      <span class="input-group-btn">
+        <button (click)="searchByShowName()" class="btn btn-primary" type="button">By Show Name!</button>
+        <button (click)="clear()" class="btn btn-primary" type="button">Clear</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+<div style="margin: 20px;">
+  <div class="row">
+  </div>
+  <!-- /.row -->
+  <h2 style="text-align: center;">Shows Lists</h2>
+  <div class="bs-example" data-example-id="simple-thumbnails">
+    <div class="row">
+      <div style="width: 250px; height: 350px; overflow: hidden;" 
+      *ngFor="let item of showsList" class="col-xs-9 col-sm-4 col-md-3 col-lg-3"> 
+        <a (click)="redirectShowById(item.id)" class="thumbnail">
+          <img alt="90%x250" style="height: 250px; width: 90%; display: block;" 
+            [src]="item.image?.medium" data-holder-rendered="true">
+            <h4 style="text-align: center; font-weight: bold; font-size: 15px;
+            color: #000;">{{item.name}} {{item.id}}
+        </h4>
+        <p style="text-align: center; font-size: 10px; color: #000;"> {{item.rating?.average ? 'Rating:' + item.rating?.average: ''}}
+        </p>
+        </a> 
+
+      </div>
+    </div>
+  </div>
+</div>

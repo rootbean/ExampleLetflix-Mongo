@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <p *ngIf="showMessage">Muchas gracias por su registro!</p>
+    <form *ngIf="!showMessage" #form="ngForm" novalidate id="form-work" name="form" (ngSubmit)="create(form)" class="col-xs-11 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-5 col-lg-offset-3">
+      <div class="form-group">
+        <label for="alias">Alias:</label>
+        <input [(ngModel)]="user.alias" #alias="ngModel" required name="alias" type="text" class="form-control">
+        <span class="validacion-form" *ngIf="alias.touched && !alias.valid">
+              Ingrese un alias valido!.
+            </span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" [(ngModel)]="user.email" #email="ngModel" required name="email">
+         <span class="validacion-form" *ngIf="email.touched && !email.valid">
+              Ingrese un email valido!.
+            </span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" 
+          [(ngModel)]="user.password" #password="ngModel" minlength="6" required name="password">
+          <span class="validacion-form" *ngIf="email.touched && !email.valid">
+              Ingrese una password valido!.
+            </span>
+      </div>
+      <button [disabled]="!form.valid || !botonActive" type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+</div>
