@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 //app.set('appPath', path.join(path.normalize(`${__dirname}/../../..`), 'client/dist'));
-app.set('appPath', path.join(path.normalize(`${__dirname}/../../..`)), '/client/dist'));
+app.set('appPath', path.join(path.normalize(`${__dirname}/../../..`), '/client/dist'));
 
 app.use(express.static(app.get('appPath')));
 
