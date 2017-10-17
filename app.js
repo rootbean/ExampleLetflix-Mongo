@@ -13,8 +13,11 @@ app.use(cors())
 
 app.use(express.static('client/dist'));
 
+app.set('appPath', path.join(path.normalize(`${__dirname}/../../..`), 'client/dist'));
+app.use(express.static(app.get('appPath')));
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+  res.sendFile(path.resolve(`${app.get('appPath')}/index.html`));
 });
 
 /*
