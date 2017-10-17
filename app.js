@@ -17,7 +17,7 @@ app.use(express.static(app.get('client')));
 app.use('/api', api)
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/dist/index.html'));
+  res.sendFile('client/dist');
 })
 
 module.exports = app
