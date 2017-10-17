@@ -11,13 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.set('appPath', path.join(path.normalize(`${__dirname}`), '/client/dist'));
+app.use(express.static(path.join(__dirname, 'client/dist')))
 
-app.use(express.static(app.get('appPath')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(`${app.get('appPath')}/index.html`));
-});
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/dist/index.html'))
+})
 
 app.use('/api', api)
 
