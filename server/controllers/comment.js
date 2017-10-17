@@ -21,7 +21,7 @@ function addComment (req, res) {
   comment.description = req.body.description
 
   comment.save((err, comment) => {
-    if (err) res.status(500).send({message: `Err: ${err} `})
+    if (err) res.status(500).send({ message: `Err: ${err} `})
 
     res.status(200).send({ message: 'Create comment'})
   })
