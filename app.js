@@ -13,7 +13,7 @@ app.use(cors())
 
 app.use(express.static(__dirname + '/client/dist'));
 
-app.set('views', path.join(__dirname, 'views/client/dist'));
+app.set('views', path.join(__dirname, 'client/dist'));
 
 app.use('/api', api)
 
